@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UsersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,16 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Advertisements::class, mappedBy="users")
+     */
+    private $advertisements;
+
+    public function __construct()
+    {
+        $this->advertisements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -124,5 +136,35 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Advertisements>
+     */
+    public function getAdvertisements(): Collection
+    {
+        return $this->advertisements;
+    }
+
+    public function addAdvertisement(Advertisements $advertisement): self
+    {
+        if (!$this->advertisements->contains($advertisement)) {
+            $this->advertisements[] = $advertisement;
+            $advertisement->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdvertisement(Advertisements $advertisement): self
+    {
+        if ($this->advertisements->removeElement($advertisement)) {
+            // set the owning side to null (unless already changed)
+            if ($advertisement->getUsers() === $this) {
+                $advertisement->setUsers(null);
+            }
+        }
+
+        return $this;
     }
 }
