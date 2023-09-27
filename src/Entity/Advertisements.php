@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AdvertisementsRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -52,6 +54,16 @@ class Advertisements
      * @ORM\JoinColumn(nullable=false)
      */
     private $categories;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Favourites::class, mappedBy="advertisements")
+     */
+    private $favourites;
+
+    public function __construct()
+    {
+        $this->favourites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,6 +150,36 @@ class Advertisements
     public function setCategories(?Categories $categories): self
     {
         $this->categories = $categories;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favourites>
+     */
+    public function getFavourites(): Collection
+    {
+        return $this->favourites;
+    }
+
+    public function addFavourite(Favourites $favourite): self
+    {
+        if (!$this->favourites->contains($favourite)) {
+            $this->favourites[] = $favourite;
+            $favourite->setAdvertisements($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavourite(Favourites $favourite): self
+    {
+        if ($this->favourites->removeElement($favourite)) {
+            // set the owning side to null (unless already changed)
+            if ($favourite->getAdvertisements() === $this) {
+                $favourite->setAdvertisements(null);
+            }
+        }
 
         return $this;
     }
