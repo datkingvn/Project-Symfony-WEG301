@@ -1,19 +1,100 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="en" dir="ltr" data-theme-color="default">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Description" content="This is Project Demo WEBG301 by Tran Manh Dat - GCD210057">
+    <meta name="Author" content="datkingvn">
+    <meta name="Keywords"
+          content="Project Symfony 5"/>
+
+    <!-- Title -->
+    <title> {% block title %}Home Page{% endblock %} </title>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ asset('../assets/img/brand/favicon.ico') }}" type="image/x-icon"/>
+    <!-- Icons css -->
+    <link href="{{ asset('../assets/css/icons.css') }}" rel="stylesheet">
+    <!-- Bootstrap css-->
+    <link id="style" href="{{ asset('../assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"/>
+    <!-- Style css -->
+    <link href="{{ asset('../assets/css/style.css') }}" rel="stylesheet">
+    <!-- Plugins css -->
+    <link href="{{ asset('../assets/css/plugins.css') }}" rel="stylesheet">
+
+</head>
+
+<body class="ltr main-body app sidebar-mini index">
+<div class="progress-top-bar"></div>
+
+<!-- Back-to-top -->
+<a href="#top" id="back-to-top" class="back-to-top rounded-circle shadow"><i class="las la-arrow-up"></i></a>
+
+<!-- Loader -->
+<div id="global-loader">
+    <img src="{{ asset('') }}../assets/img/loader.svg" class="loader-img" alt="Loader">
+</div>
+<!-- /Loader -->
+
+<!-- Page -->
+<div class="page">
+
+    <div class="layout-position-binder">
+        <!-- main-navbar -->
+        {{ include('layouts/navbar.html.twig') }}
+        <!-- /main-navbar -->
+
+        <!-- main-sidebar -->
+        {{ include('layouts/sidebar.html.twig') }}
+        <!-- main-sidebar -->
+    </div>
+
+    <!-- main-content -->
+
+    <!-- /main-content -->
+    {% block body %}{% endblock %}
+    <!-- Footer opened -->
+    {{ include('layouts/footer.html.twig') }}
+    <!-- Footer closed -->
+
+</div>
+<!-- End Page -->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<!-- JQuery min js -->
+<script src="{{ asset('../assets/plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap js -->
+<script src="{{ asset('../assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<!-- Apexchart js -->
+<script src="{{ asset('../assets/js/apexcharts.js') }}"></script>
+<!--Internal Echart Plugin -->
+<script src="{{ asset('../assets/plugins/echart/echart.js') }}"></script>
+<!-- Perfect-scrollbar js -->
+<script src="{{ asset('../assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ asset('../assets/plugins/perfect-scrollbar/p-scroll.js') }}"></script>
+<!-- Sidebar js -->
+<script src="{{ asset('../assets/plugins/side-menu/sidemenu.js') }}"></script>
+<!-- Sticky js -->
+<script src="{{ asset('../assets/js/sticky.js') }}"></script>
+<!-- Select2 js -->
+<script src="{{ asset('') }}../assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- Data tables -->
+<script src="{{ asset('../assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('../assets/plugins/datatable/js/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('../assets/plugins/datatable/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('../assets/plugins/datatable/responsive.bootstrap5.min.js') }}"></script>
+<!-- right-sidebar js -->
+<script src="{{ asset('../assets/plugins/sidebar/sidebar.js') }}"></script>
+<script src="{{ asset('../assets/plugins/sidebar/sidebar-custom.js') }}"></script>
+<!-- Internal index js -->
+<script src="{{ asset('../assets/js/index.js') }}"></script>
+<!-- custom-switcher js -->
+<script src="{{ asset('../assets/js/custom-switcher.js') }}"></script>
+<!-- custom js -->
+<script src="{{ asset('../assets/js/custom.js') }}"></script>
+</body>
+
 </html>
