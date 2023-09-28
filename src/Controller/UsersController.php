@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UsersController extends AbstractController
 {
@@ -73,5 +74,30 @@ class UsersController extends AbstractController
         return $this->render('users/edit-profile.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/users/change-password", name="users_change_password")
+     */
+    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        if ($request->isMethod('POST')) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $user = $this->getUser();
+
+            // Xác minh 2 mật khẩu mới nhập vào là trùng nhau
+            if ($request->request->get('newPassword') == $request->request->get('newPassword2')) {
+                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('newPassword')));
+                $entityManager->flush();
+                $this->addFlash('message', 'Change Password Successfully!');
+
+                return $this->redirectToRoute('app_users');
+            } else {
+                $this->addFlash('error', 'The Newly Entered Passwords Do Not Match!');
+            }
+        }
+
+        return $this->render('users/edit-password.html.twig');
     }
 }
