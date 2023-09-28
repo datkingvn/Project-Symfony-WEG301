@@ -1,20 +1,121 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UsersController!{% endblock %}
-
+{% block title_page %}
+Profile
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <!-- main-content -->
+    <div class="main-content app-content">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <!-- container -->
+        <div class="main-container container-fluid">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/Symfony-WEBG301/Symfony-ASM/GCD210057/src/Controller/UsersController.php'|file_link(0) }}">src/Controller/UsersController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/XAMPP/xamppfiles/htdocs/Symfony-WEBG301/Symfony-ASM/GCD210057/templates/users/index.html.twig'|file_link(0) }}">templates/users/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <!-- breadcrumb -->
+            <div class="breadcrumb-header justify-content-between">
+                <div class="left-content">
+                    <span class="main-content-title mg-b-0 mg-b-lg-1">PROFILE</span>
+                </div>
+                <div class="justify-content-center mt-2">
+                    <ol class="breadcrumb breadcrumb-style3">
+                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Pages</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /breadcrumb -->
+
+            <style>
+                .profile-cover-custom {
+                    background-image: url("https://wallpaperaccess.com/full/2319707.jpg");
+                    background-position: top;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+            </style>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card overflow-hidden">
+                        <div class="card-body p-0">
+                            <div class="profile-cover-custom ht-350"></div>
+                            <div class="px-4 pt-4 pos-relative">
+                                <div class="rounded-circle profile-img">
+                                    <img src="https://i.imgur.com/YsrK6UZ.jpg" alt="img" class="avatar-xxl rounded-circle">
+                                </div>
+                                <div class="mt-4 d-sm-flex">
+                                    <div class="mt-0 mb-sm-0 mb-3">
+                                        <h3 class="mb-1">{{ app.user.firstname }} {{ app.user.lastname }}</h3>
+                                        <span class="tx-muted">Developer of University Of Greenwich</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="panel tabs-style7 scaleX mt-2">
+                                <div class="panel-head">
+                                    <ul class="nav nav-tabs d-block d-sm-flex">
+                                        <li class="nav-item"><a class="nav-link tx-14 font-weight-semibold text-sm-center text-start active" data-bs-toggle="tab" href="#profileTab2">Edit Profile</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="panel-body p-0 border-0">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="profileTab2">
+                                <div class="card">
+                                    <div class="card-body border-0">
+                                        <div class="d-flex">
+                                            <div class="ms-auto">
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-primary rounded-pill">Save Changes</a>
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger rounded-pill">Cancel</a>
+                                            </div>
+                                        </div>
+                                        <form class="form-horizontal">
+                                            <h4 class="tx-15 text-uppercase font-weight-semibold mb-3">Information</h4>
+                                            <div class="form-group ">
+                                                <div class="row row-sm">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">First Name</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" value="{{ app.user.firstname }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <div class="row row-sm">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Last Name</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" value="{{ app.user.lastname }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group ">
+                                                <div class="row row-sm">
+                                                    <div class="col-md-3">
+                                                        <label class="form-label">Email</label>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" value="{{ app.user.email }}" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- Container closed -->
+    </div>
+    <!-- main-content closed -->
+
 {% endblock %}
