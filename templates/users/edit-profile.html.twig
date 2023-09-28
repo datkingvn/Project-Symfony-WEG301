@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title_page %}
-Profile
+    Profile
 {% endblock %}
 {% block body %}
     <!-- main-content -->
@@ -61,62 +61,57 @@ Profile
                 </div>
                 <div class="col-xl-12">
                     <div class="panel-body p-0 border-0">
-                        {% for message in app.flashes('message') %}
-                            <div class="alert alert-outline-success alert-dismissible fade show" role="alert">
-                                <strong>Well done!</strong> {{ message }}
-                                <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                        {% endfor %}
                         <div class="tab-content">
                             <div class="tab-pane active" id="profileTab2">
                                 <div class="card">
                                     <div class="card-body border-0">
-                                        <div class="d-flex">
-                                            <div class="ms-auto">
-                                                <a href="{{ path('users_profile_edit') }}" class="btn btn-sm btn-primary rounded-pill">Update Profile</a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger rounded-pill">Change Password</a>
+                                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                                        <h4 class="tx-15 text-uppercase font-weight-semibold mb-3">Information</h4>
+                                        <div class="form-group ">
+                                            <div class="row row-sm">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">Email</label>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input type="text" class="form-control" value="{{ app.user.email }}" readonly>
+                                                </div>
                                             </div>
                                         </div>
-                                        <form class="form-horizontal">
-                                            <h4 class="tx-15 text-uppercase font-weight-semibold mb-3">Information</h4>
-                                            <div class="form-group ">
-                                                <div class="row row-sm">
-                                                    <div class="col-md-3">
-                                                        <label class="form-label">First Name</label>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" value="{{ app.user.firstname }}" readonly>
-                                                    </div>
+                                        <div class="form-group">
+                                            <div class="row row-sm">
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.firstname, 'First Name', {'label_attr': {'class': 'form-label'}}) }}
+                                                </div>
+                                                <div class="col-md-9">
+                                                    {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group ">
-                                                <div class="row row-sm">
-                                                    <div class="col-md-3">
-                                                        <label class="form-label">Last Name</label>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" value="{{ app.user.lastname }}" readonly>
-                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row row-sm">
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.lastname, 'Last Name', {'label_attr': {'class': 'form-label'}}) }}
+                                                </div>
+                                                <div class="col-md-9">
+                                                    {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
                                                 </div>
                                             </div>
-                                            <div class="form-group ">
-                                                <div class="row row-sm">
-                                                    <div class="col-md-3">
-                                                        <label class="form-label">Email</label>
-                                                    </div>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" value="{{ app.user.email }}" readonly>
-                                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row row-sm">
+                                                <div class="col-md-3">
+                                                    {{ form_label(form.about, 'About', {'label_attr': {'class': 'form-label'}}) }}
+                                                </div>
+                                                <div class="col-md-9">
+                                                    {{ form_widget(form.about, {'attr': {'class': 'form-control'}}) }}
                                                 </div>
                                             </div>
-                                            <div class="border-top"></div>
-                                            <div class="p-4">
-                                                <h4 class="tx-15 text-uppercase font-weight-semibold mb-3">Advertisements You Posted ({{ app.user.advertisements | length }})</h4>
-                                                {% for advertisement in app.user.advertisements %}
-                                                    <span class="badge badge-lg badge-light rounded-pill mb-3 mb-sm-0">{{ advertisement.title }}</span>
-                                                {% endfor %}
-                                            </div>
-                                        </form>
+                                        </div>
+                                        <div class="border-top"></div>
+                                        <br>
+                                        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-sm btn-outline-primary'}}) }}
+                                        <a href="/users" class="btn btn-sm btn-outline-danger">Close</a>
+                                        {{ form_end(form) }}
                                     </div>
                                 </div>
                             </div>
