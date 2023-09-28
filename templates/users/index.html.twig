@@ -52,7 +52,7 @@ Profile
                             <div class="panel tabs-style7 scaleX mt-2">
                                 <div class="panel-head">
                                     <ul class="nav nav-tabs d-block d-sm-flex">
-                                        <li class="nav-item"><a class="nav-link tx-14 font-weight-semibold text-sm-center text-start active" data-bs-toggle="tab" href="#profileTab2">Edit Profile</a></li>
+                                        <li class="nav-item"><a class="nav-link tx-14 font-weight-semibold text-sm-center text-start active" data-bs-toggle="tab" href="#profileTab2">View Profile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -67,8 +67,8 @@ Profile
                                     <div class="card-body border-0">
                                         <div class="d-flex">
                                             <div class="ms-auto">
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-primary rounded-pill">Save Changes</a>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger rounded-pill">Cancel</a>
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-primary rounded-pill">Update Profile</a>
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger rounded-pill">Change Password</a>
                                             </div>
                                         </div>
                                         <form class="form-horizontal">
@@ -103,7 +103,13 @@ Profile
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <div class="border-top"></div>
+                                            <div class="p-4">
+                                                <h4 class="tx-15 text-uppercase font-weight-semibold mb-3">Advertisements You Posted ({{ app.user.advertisements | length }})</h4>
+                                                {% for advertisement in app.user.advertisements %}
+                                                    <span class="badge badge-lg badge-light rounded-pill mb-3 mb-sm-0">{{ advertisement.title }}</span>
+                                                {% endfor %}
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
