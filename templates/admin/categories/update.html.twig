@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Category{% endblock %}
+
+{% block body %}
+    <!-- main-content -->
+    <div class="main-content app-content">
+        <!-- container -->
+        <div class="main-container container-fluid">
+            <!-- breadcrumb -->
+            <div class="breadcrumb-header justify-content-between">
+                <div class="left-content">
+                    <span class="main-content-title mg-b-0 mg-b-lg-1">Update Category</span>
+                </div>
+                <div class="justify-content-center mt-2">
+                    <ol class="breadcrumb breadcrumb-style3">
+                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Categories</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Update Category</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /breadcrumb -->
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Update A Category</div>
+                        </div>
+                        <div class="card-body">
+                            {{ form_start(form, {'attr': {'class': 'needs-validation was-validated'}}) }}
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-label text-secondary">- Name Of Category</div>
+                                    <div class="form-group has-success mg-b-0">
+                                        {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Input box (invalid state)'}}) }}
+                                        {{ form_errors(form.name) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">- Select Parent (<i style="color: red">Create New Category No Need Choose</i>)</label>
+                                    {{ form_widget(form.parent, {'attr': {'class': 'form-control form-select select2'}}) }}
+                                    {{ form_errors(form.parent) }}
+                                </div>
+                            </div>
+                            {{ form_widget(form.Submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+                <!--/div-->
+            </div>
+            <!-- row closed -->
+        </div>
+        <!-- Container closed -->
+    </div>
+    <!-- main-content closed -->
+{% endblock %}

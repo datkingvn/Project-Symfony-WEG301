@@ -48,7 +48,7 @@
                                         <td>{{ category.parent }}</td>
                                         <td><span class="badge badge-pill bg-primary-transparent tx-primary px-3 py-2 tx-11">{{ category.slug }}</span></td>
                                         <td><div class="btn-list">
-                                                <a href="xx" class="btn btn-sm btn-outline-primary"><i class="fe fe-edit"></i> Edit</a>
+                                                <a href="{{ path('admin_categories_update', {id: category.id}) }}" class="btn btn-sm btn-outline-primary"><i class="fe fe-edit"></i> Edit</a>
                                                 <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="fe fe-trash"></i> Delete</a>
                                             </div></td>
                                     </tr>

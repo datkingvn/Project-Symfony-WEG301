@@ -12,13 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/admin/categories", name="admin_categories")
+ * @Route("/admin/categories", name="admin_categories_")
  * @package App\Controller
  */
 class CategoriesController extends AbstractController
 {
     /**
-     * @Route("/", name="admin_categories_home")
+     * @Route("/", name="home")
      */
     public function index(CategoriesRepository $categoriesRepository): Response
     {
@@ -28,7 +28,7 @@ class CategoriesController extends AbstractController
     }
 
     /**
-     * @Route("/add", name="admin_categories_add")
+     * @Route("/add", name="add")
      */
     public function addCategory(Request $request): Response
     {
@@ -48,6 +48,34 @@ class CategoriesController extends AbstractController
 
         return $this->render('admin/categories/add.html.twig', [
             'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/update-category/{id}", name="update")
+     */
+    public function updateCategory($id, CategoriesRepository $categoriesRepository, Request $request): Response
+    {
+
+        $category = $categoriesRepository->find($id);
+
+        if (!$category) {
+            throw $this->createNotFoundException('Category not found');
+        }
+
+        $form = $this->createForm(CategoriesType::class, $category);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('admin_categories_home');
+        }
+
+        return $this->render('admin/categories/update.html.twig', [
+            'category' => $category,
+            'form' => $form->createView(),
         ]);
     }
 }
