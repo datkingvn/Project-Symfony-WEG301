@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Categories;
 use App\Form\CategoriesType;
+use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,23 +12,23 @@ use Symfony\Component\Routing\Annotation\Route;
 
 
 /**
- * @Route("/admin", name="admin_")
+ * @Route("/admin/categories", name="admin_categories")
  * @package App\Controller
  */
-class AdminController extends AbstractController
+class CategoriesController extends AbstractController
 {
     /**
-     * @Route("/", name="home")
+     * @Route("/", name="admin_categories_home")
      */
-    public function index(): Response
+    public function index(CategoriesRepository $categoriesRepository): Response
     {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+        return $this->render('admin/categories/index.html.twig', [
+            'categories' => $categoriesRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/categories/add", name="categories_add")
+     * @Route("/add", name="admin_categories_add")
      */
     public function addCategory(Request $request): Response
     {
@@ -42,7 +43,7 @@ class AdminController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
-            return $this->redirectToRoute('admin_home');
+            return $this->redirectToRoute('admin_categories_home');
         }
 
         return $this->render('admin/categories/add.html.twig', [
