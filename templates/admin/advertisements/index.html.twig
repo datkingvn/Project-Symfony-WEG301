@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}Admin- Advertisements{% endblock %}
+{% block title %}Admin - Advertisements{% endblock %}
 {% block body %}
     <!-- main-content -->
     <div class="main-content app-content">
-
         <!-- container -->
         <div class="main-container container-fluid">
-
             <!-- breadcrumb -->
             <div class="breadcrumb-header justify-content-between">
                 <div class="left-content">
-{#                    <span class="main-content-title mg-b-0 mg-b-lg-1"><a href="{{path('admin_categories_add')}}" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus"></i> Add Category</a></span>#}
+                    {# <span class="main-content-title mg-b-0 mg-b-lg-1"><a href="{{path('admin_categories_add')}}" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus"></i> Add Category</a></span> #}
                 </div>
                 <div class="justify-content-center mt-2">
                     <ol class="breadcrumb breadcrumb-style3">
@@ -26,6 +24,7 @@
                     {{ flashMessage }}
                 </div>
             {% endfor %}
+
             <!-- Row -->
             <div class="row row-sm">
                 <div class="col-lg-12">
@@ -34,7 +33,7 @@
                             <div class="card-title">Show List Advertisements</div>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive ">
+                            <div class="table-responsive">
                                 <table class="table table-bordered text-nowrap border-bottom" id="responsiveDataTable">
                                     <thead>
                                     <tr>
@@ -47,48 +46,53 @@
                                     </thead>
                                     <tbody>
                                     {% for advertisement in advertisements %}
-                                    <tr>
-                                        <td><div class="badge border-orange border tx-orange fs-11 my-auto" ><span class="text-primary">ID: {{ advertisement.id }}</span> - Status: ({{ advertisement.active ? 'Active' : 'Inactive' }})</div></td>
-                                        <td>{{ advertisement.title }}</td>
-                                        <td class="text-secondary">{{ advertisement.createdAt | date}}</td>
-                                        <td>
-    <span>
-        <div class="btn-list">
-            <a href="javascript:void(0);" class="btn btn-outline-primary" onclick="toggleActive({{ advertisement.id }}, true)"><i class="fas fa-check"></i> Active</a>
-            <a href="javascript:void(0);" class="btn btn-outline-danger" onclick="toggleActive({{ advertisement.id }}, false)"><i class="fas fa-ban"></i> Inactive</a>
-        </div>
-    </span>
-                                        </td>
-
-                                        <script>
-                                            function toggleActive(id, active) {
-                                                // Tạo đối tượng XMLHttpRequest
-                                                var xhr = new XMLHttpRequest();
-
-                                                // Thiết lập phương thức và URL của yêu cầu AJAX
-                                                xhr.open("POST", "/admin/advertisements/active-advertisements/" + id, true);
-
-                                                // Thiết lập header của yêu cầu AJAX
-                                                xhr.setRequestHeader("Content-Type", "application/json");
-
-                                                xhr.onload = function () {
-                                                    if (xhr.status === 200) {
-                                                        location.reload(); // Reload lại trang
-                                                    } else {
-                                                        console.error("Request failed with status: " + xhr.status);
-                                                    }
-                                                };
-
-                                                // Gửi yêu cầu AJAX với dữ liệu payload
-                                                var payload = JSON.stringify({ active: active });
-                                                xhr.send(payload);
-                                            }
-                                        </script>
-                                        <td><div class="btn-list">
-{#                                                <a href="{{ path('admin_categories_update', {id: category.id}) }}" class="btn btn-sm btn-outline-primary"><i class="fe fe-edit"></i> Edit</a>#}
-{#                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="fe fe-trash"></i> Delete</a>#}
-                                            </div></td>
-                                    </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="badge border-orange border tx-orange fs-11 my-auto">
+                                                    <span class="text-primary">ID: {{ advertisement.id }}</span> - Status: ({{ advertisement.active ? 'Active' : 'Inactive' }})
+                                                </div>
+                                            </td>
+                                            <td>{{ advertisement.title }}</td>
+                                            <td class="text-secondary">{{ advertisement.createdAt | date }}</td>
+                                            <td>
+                                                    <span>
+                                                        <div class="btn-list">
+                                                            <a href="javascript:void(0);" class="btn btn-outline-primary" onclick="toggleActive({{ advertisement.id }}, true)">
+                                                                <i class="fas fa-check"></i> Active
+                                                            </a>
+                                                            <a href="javascript:void(0);" class="btn btn-outline-danger" onclick="toggleActive({{ advertisement.id }}, false)">
+                                                                <i class="fas fa-ban"></i> Inactive
+                                                            </a>
+                                                        </div>
+                                                    </span>
+                                            </td>
+                                            <td>
+                                                <div class="card-body">
+                                                    <a class="btn btn-primary" data-bs-target="#modal-{{ advertisement.id }}" data-bs-toggle="modal" href="javascript:void(0)"><i class="fas fa-eye"></i> View Content</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="modal-{{ advertisement.id }}" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h6 class="modal-title">Content of <span class="text-primary">{{ advertisement.id }} - {{ advertisement.title }}</span></h6>
+                                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>{{ advertisement.content }}</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-sm btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                                        <button class="btn btn-sm btn-primary" type="button">Save changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End Modal -->
                                     {% endfor %}
                                     </tbody>
                                 </table>
@@ -103,5 +107,28 @@
     </div>
     <!-- main-content closed -->
 
-{% endblock %}
+    <script>
+        function toggleActive(id, active) {
+            // Create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
 
+            // Set the method and URL of the AJAX request
+            xhr.open("POST", "/admin/advertisements/active-advertisements/" + id, true);
+
+            // Set the headers of the AJAX request
+            xhr.setRequestHeader("Content-Type", "application/json");
+
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    location.reload(); // Reload the page
+                } else {
+                    console.error("Request failed with status: " + xhr.status);
+                }
+            };
+
+            // Send the AJAX request with the payload data
+            var payload = JSON.stringify({ active: active });
+            xhr.send(payload);
+        }
+    </script>
+{% endblock %}
