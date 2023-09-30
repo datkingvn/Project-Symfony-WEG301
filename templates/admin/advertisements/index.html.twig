@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+{% block title %}Admin- Advertisements{% endblock %}
+{% block body %}
+    <!-- main-content -->
+    <div class="main-content app-content">
+
+        <!-- container -->
+        <div class="main-container container-fluid">
+
+            <!-- breadcrumb -->
+            <div class="breadcrumb-header justify-content-between">
+                <div class="left-content">
+{#                    <span class="main-content-title mg-b-0 mg-b-lg-1"><a href="{{path('admin_categories_add')}}" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus"></i> Add Category</a></span>#}
+                </div>
+                <div class="justify-content-center mt-2">
+                    <ol class="breadcrumb breadcrumb-style3">
+                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Admin</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Advertisements</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /breadcrumb -->
+
+            {% for flashMessage in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            <!-- Row -->
+            <div class="row row-sm">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Show List Advertisements</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive ">
+                                <table class="table table-bordered text-nowrap border-bottom" id="responsiveDataTable">
+                                    <thead>
+                                    <tr>
+                                        <th class="wd-20p">ID</th>
+                                        <th class="wd-25p">Title</th>
+                                        <th class="wd-20p">Date</th>
+                                        <th class="wd-15p">Active</th>
+                                        <th class="wd-20p">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for advertisement in advertisements %}
+                                    <tr>
+                                        <td><div class="badge border-orange border tx-orange fs-11 my-auto" ><span class="text-primary">ID: {{ advertisement.id }}</span> - Status: ({{ advertisement.active ? 'Active' : 'Inactive' }})</div></td>
+                                        <td>{{ advertisement.title }}</td>
+                                        <td class="text-secondary">{{ advertisement.createdAt | date}}</td>
+                                        <td>
+    <span>
+        <div class="btn-list">
+            <a href="javascript:void(0);" class="btn btn-outline-primary" onclick="toggleActive({{ advertisement.id }}, true)"><i class="fas fa-check"></i> Active</a>
+            <a href="javascript:void(0);" class="btn btn-outline-danger" onclick="toggleActive({{ advertisement.id }}, false)"><i class="fas fa-ban"></i> Inactive</a>
+        </div>
+    </span>
+                                        </td>
+
+                                        <script>
+                                            function toggleActive(id, active) {
+                                                // Tạo đối tượng XMLHttpRequest
+                                                var xhr = new XMLHttpRequest();
+
+                                                // Thiết lập phương thức và URL của yêu cầu AJAX
+                                                xhr.open("POST", "/admin/advertisements/active-advertisements/" + id, true);
+
+                                                // Thiết lập header của yêu cầu AJAX
+                                                xhr.setRequestHeader("Content-Type", "application/json");
+
+                                                xhr.onload = function () {
+                                                    if (xhr.status === 200) {
+                                                        location.reload(); // Reload lại trang
+                                                    } else {
+                                                        console.error("Request failed with status: " + xhr.status);
+                                                    }
+                                                };
+
+                                                // Gửi yêu cầu AJAX với dữ liệu payload
+                                                var payload = JSON.stringify({ active: active });
+                                                xhr.send(payload);
+                                            }
+                                        </script>
+                                        <td><div class="btn-list">
+{#                                                <a href="{{ path('admin_categories_update', {id: category.id}) }}" class="btn btn-sm btn-outline-primary"><i class="fe fe-edit"></i> Edit</a>#}
+{#                                                <a href="javascript:void(0);" class="btn btn-sm btn-outline-danger"><i class="fe fe-trash"></i> Delete</a>#}
+                                            </div></td>
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        <!-- Container closed -->
+    </div>
+    <!-- main-content closed -->
+
+{% endblock %}
+

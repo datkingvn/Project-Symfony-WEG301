@@ -78,4 +78,23 @@ class CategoriesController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/delete-category/{id}", name="delete")
+     */
+    public function deleteCategory($id, CategoriesRepository $categoriesRepository, Request $request): Response
+    {
+
+        $category = $categoriesRepository->find($id);
+
+        if (!$category) {
+            throw $this->createNotFoundException('Category not found');
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($category);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('admin_categories_home');
+    }
 }
