@@ -40,11 +40,11 @@
                         <div class="card overflow-hidden">
                             <a href="blog-details.html"><img class="br-be-0 br-bs-0 w-100" src="https://i.imgur.com/O7I7xVb.jpg" alt="img"></a>
                             <div class="card-body">
-                                <a class="text-primary" href="blog-details.html"><h5>{{ advertisement.title }}</h5></a>
+                                <a class="text-primary" href="{{ path('advertisements_details', {slug: advertisement.slug}) }}"><h5>{{ advertisement.title }}</h5></a>
                                 <p class="tx-muted mb-0 text-secondary">{{ advertisement.content }}</p>
                                 <p class="text-sm text-danger">- Category: {{ advertisement.categories.name }}</p>
                                 <div class="mt-3 flex-between">
-                                    <a href="blog-details.html" class="btn btn-primary">Read Article</a>
+                                    <a href="{{ path('advertisements_details', {slug: advertisement.slug}) }}" class="btn btn-primary">Read Article</a>
                                     <span class="tx-11 tx-muted">A Minutes To Read</span>
                                 </div>
                             </div>

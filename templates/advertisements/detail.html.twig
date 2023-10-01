@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <!-- main-content -->
+    <div class="main-content app-content">
+
+        <!-- container -->
+        <div class="main-container container-fluid">
+
+            <!-- breadcrumb -->
+            <div class="breadcrumb-header justify-content-between">
+                <div class="left-content">
+                    <span class="main-content-title mg-b-0 mg-b-lg-1">BLOG DETAILS</span>
+                </div>
+                <div class="justify-content-center mt-2">
+                    <ol class="breadcrumb breadcrumb-style3">
+                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Advertisements</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Details</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /breadcrumb -->
+
+            <div class="row">
+                <div class="col-xxl-9 col-xl-12 col-lg-12 col-md-12">
+                    <div class="card overflow-hidden">
+                        <div class="card-body">
+                            <div class="pd-x-0 pd-sm-x-80">
+                                <h2 class="mb-1 text-primary">{{ advertisement.title }}</h2>
+                            </div>
+                            <div class="my-4">
+                                <img src="https://i.imgur.com/JBBMIKx.png" alt="img" class="cover-image radius-4 w-100">
+                            </div>
+                            <div class="pd-x-0 pd-sm-x-80">
+                                <div class="d-sm-flex d-block align-items-center tx-muted mb-3">
+                                    <div class="d-flex align-items-center me-4 mb-3 mb-sm-0">
+                                        <span class="avatar-sm"><img src="https://i.imgur.com/iLYRlWq.png" alt="avatar" class="rounded-circle"></span>
+                                        <span class="ms-2 tx-14">by <a href="javascript:void(0);" class="tx-inverse tx-italic">Kristie Morgan</a></span>
+                                    </div>
+                                    <span><i class="fe fe-calendar me-2 tx-14"></i>17-03-2022</span>
+                                </div>
+                                <div class="mb-4">
+                                    <h5 class="font-weight-semibold mb-1">Read content advertisement:</h5>
+                                    <p class=" tx-muted">{{ advertisement.content }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xxl-3 col-xl-12 col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">About Author</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex flex-wrap">
+                                <div class="me-2">
+                                    <span class="avatar-xxl"><img src="https://i.imgur.com/YsrK6UZ.jpg" alt="avatar" class="radius-4"></span>
+                                </div>
+                                <div class="flex-1">
+                                    <a href="javascript:void(0);" class="btn btn-def btn-sm tx-primary float-end" data-bs-toggle="tooltip" title="unfollow"><i class="fe fe-cast"></i></a>
+                                    <h5 class="font-weight-semibold mb-0">Kristie Morgan</h5>
+                                    <span class="tx-muted tx-12">Novelist</span>
+                                    <div class="mt-2 d-flex align-items-center">
+                                        <div class="me-3">
+                                            <p class="mb-1 tx-muted font-weight-semibold">Articles</p>
+                                            <span class="mb-1 font-weight-semibold">500</span>
+                                        </div>
+                                        <div>
+                                            <p class="mb-1 tx-muted font-weight-semibold">Followers</p>
+                                            <span class="mb-1 font-weight-semibold">39.3K</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <p class="mb-1 tx-muted">Et nonumy aliquyam stet clita sanctus lorem, consetetur rebum rebum vero sit eirmod duo magna, invidunt duo dolor ea at takimata ut.</p>
+                                <p class="tx-muted mb-0">Sed eirmod accusam et sed ea sit est, lorem ipsum eos,. Elitr labore erat elitr dolor.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">
+                                Categories
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tags">
+                                <a href="javascript:void(0);" class="tag rounded-pill">{{ advertisement.categories.name }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Row-->
+        </div>
+        <!-- Container closed -->
+    </div>
+    <!-- main-content closed -->
+
+{% endblock %}
