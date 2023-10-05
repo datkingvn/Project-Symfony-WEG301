@@ -41,6 +41,7 @@ class APIAdvertisementsController extends AbstractController
                     'id',
                     'title',
                     'description',
+                    'active',
                     'createdAt',
                 ],
             ]);
