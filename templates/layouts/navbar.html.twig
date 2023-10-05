@@ -36,70 +36,6 @@
             <div class="mb-0 navbar navbar-expand-lg navbar-nav-right responsive-navbar navbar-dark p-0">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent-4">
                     <ul class="nav nav-item header-icons navbar-nav-right ms-auto">
-                        <li class="dropdown nav-item  main-header-shop">
-                            <a class="new nav-link" data-bs-toggle="dropdown" href="javascript:void(0)">
-                                <svg class="ionicon header-icon-svgs"
-                                     viewBox="0 0 512 512">
-                                    <title>Cart</title>
-                                    <circle cx="176" cy="416" r="16" fill="none" stroke="currentColor"
-                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
-                                    <circle cx="400" cy="416" r="16" fill="none" stroke="currentColor"
-                                            stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
-                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
-                                          stroke-linejoin="round" stroke-width="32"
-                                          d="M48 80h64l48 272h256"/>
-                                    <path
-                                            d="M160 288h249.44a8 8 0 007.85-6.43l28.8-144a8 8 0 00-7.85-9.57H128"
-                                            fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="32"/>
-                                </svg>
-                                <span class="badge bg-secondary-transparent tx-secondary header-badge">2</span></a>
-                            <div class="dropdown-menu">
-                                <div class="p-3 text-start border-bottom">
-                                    <div class="d-flex align-items-center">
-                                        <h6 class="dropdown-title mb-1 tx-15 font-weight-semibold">Shopping
-                                            Cart</h6>
-                                        <a href="product-cart.html"
-                                           class="btn btn-sm btn-primary ms-auto my-auto float-end tx-13">View
-                                            All</a>
-                                    </div>
-                                    <p class="mb-0 font-weight-semibold tx-muted tx-12">Total items: 5</p>
-                                </div>
-                                <ul class="list-unstyled main-message-list shopping-scroll">
-                                    <li class="mb-0 pos-relative">
-                                        <div class="d-flex pd-x-13 py-2 pos-relative">
-                                            <a href="product-cart.html" class="masked-link"></a>
-                                            <div class="avatar-lg"><img src="../assets/img/ecommerce/2.jpg"
-                                                                        alt="img" class="radius-4"></div>
-                                            <div class="flex-1 ms-2">
-                                                <p class="mb-0 tx-default tx-13 font-weight-semibold mb-0">
-                                                    Bluetooth Earbuds</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="mt-1">
-                                                        <p class="mb-0 tx-default tx-12"><span
-                                                                    class="me-1 tx-muted">Color: </span>Blue</p>
-                                                        <p class="mb-0 tx-default tx-12"><span
-                                                                    class="me-1 tx-muted">Quantity: </span>2</p>
-                                                    </div>
-                                                    <p
-                                                            class="mb-0 font-weight-semibold tx-14 align-self-end">
-                                                        Price: <span class="tx-secondary">$23</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="pos-absolute t-10 r-10">
-                                            <a href="javascript:void(0);" class="tx-muted"><i
-                                                        class="fe fe-trash-2 tx-danger tx-15"></i></a>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="text-center dropdown-footer">
-                                    <a class="btn btn-primary btn-block text-center"
-                                       href="check-out.html">Proceed to checkout</a>
-                                </div>
-                            </div>
-                        </li>
-
                         <li class="nav-item full-screen fullscreen-button">
                             <a class="new nav-link full-screen-link" href="javascript:void(0)">
                                 <svg class="ionicon header-icon-svgs"
@@ -170,8 +106,6 @@
                                 {% if app.user %}
                                     <li><a class="dropdown-item" href="/users"><i
                                                     class="fe fe-user"></i>Profile</a></li>
-                                    <li><a class="dropdown-item" href="mail-read.html"><i
-                                                    class="fe fe-mail"></i>Inbox</a></li>
                                     <li><a class="dropdown-item" href="/users/profile/edit"><i
                                                     class="fe fe-settings"></i>Settings</a></li>
                                     <li><a class="dropdown-item" href="/logout"><i
