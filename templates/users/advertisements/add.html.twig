@@ -1,16 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Add a Advertisement!{% endblock %}
+{% block title %}Add New Advertisement{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    </style>
-
-    <div class="example-wrapper">
-
-        <h1>Add a Advertisement</h1>
-        {{ form(form) }}
+    <!-- main-content -->
+    <div class="main-content app-content">
+        <!-- container -->
+        <div class="main-container container-fluid">
+            <!-- breadcrumb -->
+            <div class="breadcrumb-header justify-content-between">
+                <div class="left-content">
+                    <span class="main-content-title mg-b-0 mg-b-lg-1">Add Advertisement</span>
+                </div>
+                <div class="justify-content-center mt-2">
+                    <ol class="breadcrumb breadcrumb-style3">
+                        <li class="breadcrumb-item tx-15"><a href="javascript:void(0);">Advertisements</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Add Advertisement</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /breadcrumb -->
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Add New Advertisement</div>
+                        </div>
+                        <div class="card-body">
+                            {{ form_start(form, {'attr': {'class': 'needs-validation was-validated'}}) }}
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="form-label text-secondary">- Title</div>
+                                    <div class="form-group has-success mg-b-0">
+                                        {{ form_widget(form.title, {'attr': {'class': 'form-control', 'placeholder': 'Title'}}) }}
+                                        {{ form_errors(form.title) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label text-secondary">- Content</div>
+                                    <div class="form-group has-success mg-b-0">
+                                        {{ form_widget(form.content, {'attr': {'class': 'form-control', 'placeholder': 'Content'}}) }}
+                                        {{ form_errors(form.content) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-label text-secondary">- Categories</div>
+                                    {{ form_widget(form.categories, {'attr': {'class': 'form-control form-select select2'}}) }}
+                                    {{ form_errors(form.categories) }}
+                                </div>
+                            </div>
+                            {{ form_widget(form.Valider, {'attr': {'class': 'btn btn-primary'}}) }}
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+                <!--/div-->
+            </div>
+            <!-- row closed -->
+        </div>
+        <!-- Container closed -->
     </div>
+    <!-- main-content closed -->
 {% endblock %}
